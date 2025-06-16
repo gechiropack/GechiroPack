@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact - Gechiro</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('file_00000000eef4620a8c63c908d35aa394.png') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: white;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 100px auto;
+      background-color: rgba(0, 0, 0, 0.75);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 0 30px rgba(255, 0, 0, 0.4);
+    }
+
+    h1 {
+      text-align: center;
+      color: #ff1a1a;
+      font-size: 2.5em;
+      margin-bottom: 30px;
+    }
+
+    p {
+      text-align: center;
+      font-size: 1.1em;
+      margin-bottom: 20px;
+    }
+
+    .contact-info {
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    .contact-info strong {
+      color: #ff4d4d;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input, textarea {
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1em;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #ccc;
+    }
+
+    button {
+      background-color: #ff1a1a;
+      color: white;
+      padding: 12px;
+      border: none;
+      font-size: 1.1em;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background-color: #e60000;
+      transform: scale(1.05);
+    }
+
+    .back-link {
+      display: block;
+      margin-top: 30px;
+      text-align: center;
+      text-decoration: none;
+      color: #ff4d4d;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .back-link:hover {
+      color: white;
+      text-shadow: 0 0 5px #ff4d4d;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Contact Gechiro</h1>
+    <p>Have questions about the pack or need help? Reach out:</p>
+
+    <div class="contact-info">
+      <p>💬 Discord: <strong>Gechiro</strong></p>
+      <p>📧 Email: <strong>gechiro6@gmail.com</strong></p>
+    </div>
+
+    <form>
+      <form id="contact-form" action="https://formspree.io/f/myn12345" method="POST">
+  <input type="text" name="name" placeholder="Your Name" required />
+  <input type="email" name="email" placeholder="Your Email" required />
+  <textarea name="message" rows="5" placeholder="Your Message..." required></textarea>
+  <button type="submit">Send Message</button>
+  <p id="form-status" style="margin-top: 15px; color: lightgreen; display: none;">✅ Message sent correctly!</p>
+</form>
+
+<script>
+  const form = document.getElementById("contact-form");
+  const statusMsg = document.getElementById("form-status");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+
+    const response = await fetch(form.action, {
+      method: form.method,
+      body: data,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      form.reset();
+      statusMsg.style.display = "block";
+    } else {
+      statusMsg.style.display = "block";
+      statusMsg.style.color = "red";
+      statusMsg.textContent = "❌ Something went wrong. Try again!";
+    }
+  });
+</script>
+
+
+
+    <a href="webiste.html" class="back-link">← Back to Home</a>
+  </div>
+</body>
+</html>
